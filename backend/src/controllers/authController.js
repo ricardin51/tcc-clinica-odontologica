@@ -24,7 +24,7 @@ exports.login = (req, res) => {
     if (!user) return res.status(400).json({ erro: 'Usuário não encontrado' });
     bcrypt.compare(senha, user.senha, (err, valid) => {
       if (!valid) return res.status(400).json({ erro: 'Senha inválida' });
-      const token = jwt.sign({ id: user.id, tipo: user.tipo }, 'segredo', { expiresIn: '1d' });
+      const token = jwt.sign({ id: user.id, tipo: user.tipo }, process.env.JWT_SECRET || 'segredo', { expiresIn: '1d' });
       res.json({ token, user: { id: user.id, nome: user.nome, email: user.email, tipo: user.tipo } });
     });
   });
