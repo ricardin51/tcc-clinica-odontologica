@@ -12,13 +12,16 @@ function Login() {
     try {
       const response = await api.post('/auth/login', { email, senha });
       localStorage.setItem('token', response.data.token);
-      // Redirecionar conforme o tipo de usuário
+      localStorage.setItem('userTipo', response.data.user.tipo);
+      localStorage.setItem('userId', response.data.user.id);
+      
       const tipo = response.data.user.tipo;
       if (tipo === 'paciente') navigate('/paciente');
       else if (tipo === 'aluno') navigate('/aluno');
       else if (tipo === 'coordenador') navigate('/coordenador');
     } catch (error) {
-      alert('Erro no login');
+      const msg = error.response?.data?.error || 'Erro no login';
+      alert(msg);
     }
   };
 

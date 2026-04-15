@@ -1,4 +1,4 @@
-// backend/src/database/db.js
+// db (banco de dados)
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
@@ -9,7 +9,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
   else console.log('Conectado ao SQLite');
 });
 
-// Criar tabelas (exemplo básico)
+// Criar tabelas 
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS usuarios (

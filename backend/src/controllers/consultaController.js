@@ -59,7 +59,7 @@ exports.agendarConsulta = (req, res) => {
     return res.status(400).json({ erro: 'Todos os campos são obrigatórios' });
   }
 
-  // Verificar se o paciente existe e se o aluno existe (podem ser feitas validações adicionais)
+  // Verificar se o paciente existe e se o aluno existe 
   db.get('SELECT * FROM pacientes WHERE id = ?', [paciente_id], (err, paciente) => {
     if (err || !paciente) {
       return res.status(400).json({ erro: 'Paciente não encontrado' });
@@ -69,7 +69,7 @@ exports.agendarConsulta = (req, res) => {
         return res.status(400).json({ erro: 'Aluno não encontrado' });
       }
 
-      // Verificar conflito de horário (exemplo simples)
+      // Verificar conflito de horário 
       const checkQuery = `
         SELECT * FROM consultas 
         WHERE data = ? AND horario = ? AND (aluno_id = ? OR paciente_id = ?)
