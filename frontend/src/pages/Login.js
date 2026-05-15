@@ -20,18 +20,26 @@ function Login() {
       else if (tipo === 'aluno') navigate('/aluno');
       else if (tipo === 'coordenador') navigate('/coordenador');
     } catch (error) {
-      const msg = error.response?.data?.error || 'Erro no login';
+      const msg = error.response?.data?.erro || 'Erro no login';
       alert(msg);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
-      <button type="submit">Entrar</button>
-    </form>
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <div className="card p-4 shadow" style={{ width: '350px' }}>
+        <h2 className="text-center mb-4">Clínica Odontológica</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          <div className="mb-3">
+            <input type="password" className="form-control" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">Entrar</button>
+        </form>
+      </div>
+    </div>
   );
 }
 
